@@ -10,7 +10,7 @@ function Subjecticon() {
   useEffect(() => {
     // Fetch subjects from the backend API
     axios
-      .get('https://backend-nine-chi-51.vercel.app/api/subjects')
+      .get('https://backend-cyh2.vercel.app/api/subjects')
       .then((response) => {
         setSubjects(response.data);
       })

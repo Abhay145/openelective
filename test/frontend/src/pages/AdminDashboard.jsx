@@ -15,7 +15,7 @@ function AdminDashboard() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "https://backend-nine-chi-51.vercel.app/api/admin/electives",
+        "https://backend-cyh2.vercel.app/api/admin/electives",
         {},
         {
           headers: {
@@ -39,7 +39,7 @@ function AdminDashboard() {
 
     try {
       const response = await axios.delete(
-        "https://backend-nine-chi-51.vercel.app/api/admin/electives"
+        "https://backend-cyh2.vercel.app/api/admin/electives"
       );
 
       setMessage(response.data.message);

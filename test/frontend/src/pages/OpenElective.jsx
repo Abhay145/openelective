@@ -14,7 +14,7 @@ const UniqueDropdownForm = () => {
     const fetchElectives = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('https://backend-nine-chi-51.vercel.app/api/eligible-subjects', {
+        const response = await axios.get('https://backend-cyh2.vercel.app/api/eligible-subjects', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -59,7 +59,7 @@ const UniqueDropdownForm = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'https://backend-nine-chi-51.vercel.app/api/student/OpenElective',
+        'https://backend-cyh2.vercel.app/api/student/OpenElective',
         { selectedElectives },
         { headers: { Authorization: `Bearer ${token}` } }
       );

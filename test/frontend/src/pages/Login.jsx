@@ -16,7 +16,7 @@ export default function Login() {
     setIsLoading(true)
     setError('')
     try {
-      const response = await axios.post(`https://backend-nine-chi-51.vercel.app/api/${activeTab}/login`, { email, password })
+      const response = await axios.post(`https://backend-cyh2.vercel.app/api/${activeTab}/login`, { email, password })
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('userType', activeTab)
       navigate(`/${activeTab}/dashboard`)

@@ -42,7 +42,7 @@ export default function Register() {
     setError('');
 
     try {
-      const response = await axios.post('https://backend-nine-chi-51.vercel.app/api/student/register', {
+      const response = await axios.post('https://backend-cyh2.vercel.app/api/student/register', {
         rollNumber: formData.rollNumber,
       });
       setFormData({
@@ -66,7 +66,7 @@ export default function Register() {
     setError('');
 
     try {
-      await axios.post('https://backend-nine-chi-51.vercel.app/api/student/register', {
+      await axios.post('https://backend-cyh2.vercel.app/api/student/register', {
         rollNumber: formData.rollNumber,
         email: formData.email,
         password: formData.password,
