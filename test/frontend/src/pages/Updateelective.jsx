@@ -14,12 +14,12 @@ const UpdateElective = () => {
         const token = localStorage.getItem('token');
 
         // Fetch eligible electives
-        const electivesResponse = await axios.get('http://localhost:5000/api/eligible-subjects', {
+        const electivesResponse = await axios.get('https://backend-nine-chi-51.vercel.app/api/eligible-subjects', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         // Fetch previously selected electives
-        const selectedResponse = await axios.get('http://localhost:5000/api/student/selected-electives', {
+        const selectedResponse = await axios.get('https://backend-nine-chi-51.vercel.app/api/student/selected-electives', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -62,7 +62,7 @@ const UpdateElective = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:5000/api/student/update-electives',
+        'https://backend-nine-chi-51.vercel.app/api/student/update-electives',
         { selectedElectives },
         { headers: { Authorization: `Bearer ${token}` } }
       );
