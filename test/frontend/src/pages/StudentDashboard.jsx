@@ -12,7 +12,7 @@ function StudentDashboard() {
     const fetchStudentDetails = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("https://backend-cyh2.vercel.app/api/student/details", {
+        const response = await axios.get("https://backend-1jle.vercel.app/api/student/details", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setStudent(response.data.student);

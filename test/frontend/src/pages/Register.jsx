@@ -50,7 +50,7 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://backend-cyh2.vercel.app/api/student/register",
+        "https://backend-1jle.vercel.app/api/student/register",
         { rollNumber }
       );
       setFormData((prev) => ({
@@ -98,7 +98,7 @@ export default function Register() {
     }
 
     try {
-      await axios.post("https://backend-cyh2.vercel.app/api/student/register", {
+      await axios.post("https://backend-1jle.vercel.app/api/student/register", {
         rollNumber: formData.rollNumber,
         password: formData.password,
       });

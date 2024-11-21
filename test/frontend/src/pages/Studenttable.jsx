@@ -9,7 +9,7 @@ const Studenttable = ({ subject }) => {
     if (!subject || !subject.students) return; // Guard clause for undefined props
 
     const studentIdsArray = subject.students; // Extract the `students` array
-    fetch('https://backend-cyh2.vercel.app/api/admin/substudents', { 
+    fetch('https://backend-1jle.vercel.app/api/admin/substudents', { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Add Content-Type header
