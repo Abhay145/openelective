@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function StudentDashboard() {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [subject, setSubject] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStudentDetails = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("https://backend-1jle.vercel.app/api/student/details", {
+        const response = await axios.get("http://localhost:5000/api/student/details", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setStudent(response.data.student);
+        // If student has subjects, fetch their details
+        if (response.data.student.subjects) {
+          const subjectResponse = await axios.get(
+            `http://localhost:5000/api/subjects/${response.data.student.subjects}`
+          );
+          setSubject(subjectResponse.data);
+        }
       } catch (err) {
         setError("Failed to load student details.");
       } finally {
@@ -79,18 +87,13 @@ function StudentDashboard() {
             {/* Subjects */}
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Subjects Allotted</h2>
-              {student.subjects && student.subjects.length > 0 ? (
-                <ul className="space-y-3">
-                  {student.subjects.map((subject) => (
-                    <li
-                      key={subject._id}
-                      className="flex items-center justify-between bg-gray-50 p-3 rounded-md shadow"
-                    >
-                      <span className="font-medium text-gray-700">{subject.name}</span>
-                      <span className="text-sm text-gray-500">(Code: {subject.code})</span>
-                    </li>
-                  ))}
-                </ul>
+              {subject ? (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md shadow">
+                    <span className="font-medium text-gray-700">{subject.name}</span>
+                    <span className="text-sm text-gray-500">(Code: {subject.code})</span>
+                  </div>
+                </div>
               ) : (
                 <div className="text-center">
                   <p className="text-gray-600">No subjects allotted.</p>
@@ -100,7 +103,7 @@ function StudentDashboard() {
 
             {/* Button for Electives */}
             <div className="text-center">
-              {student.subjects.length === 0 && student.choices && student.choices.length === 0 && (
+              {student.subjects== null && student.choices && student.choices.length === 0 && (
                 <button
                   onClick={() => navigate("/openelective")}
                   className="mt-6 px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
@@ -109,7 +112,7 @@ function StudentDashboard() {
                 </button>
               )}
 
-              {student.subjects.length === 0 && student.choices && student.choices.length > 0 && (
+              {student.subjects== null && student.choices && student.choices.length > 0 && (
                 <button
                   onClick={() => navigate("/Updateelective")}
                   className="mt-6 px-6 py-2 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition"
@@ -118,11 +121,11 @@ function StudentDashboard() {
                 </button>
               )}
               <button
-              
-                  className="mt-6 px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition"
-                >
-                 Check Syllabus
-                </button>
+                onClick={() => navigate("/syllabus")}
+                className="mt-6 px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition"
+              >
+                Check Syllabus
+              </button>
             </div>
           </div>
         )}
