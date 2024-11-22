@@ -6,7 +6,7 @@ function StudentDashboard() {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [subject, setSubject] = useState(null);
+  const [Subject, setSubject] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,14 +16,10 @@ function StudentDashboard() {
         const response = await axios.get("https://backend-1jle.vercel.app/api/student/details", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log()
         setStudent(response.data.student);
         // If student has subjects, fetch their details
-        if (response.data.student.subjects) {
-          const subjectResponse = await axios.get(
-            `https://backend-1jle.vercel.app/api/subjects/${response.data.student.subjects}`
-          );
-          setSubject(subjectResponse.data);
-        }
+      setSubject(response.data.student.subjects)
       } catch (err) {
         setError("Failed to load student details.");
       } finally {
@@ -87,11 +83,11 @@ function StudentDashboard() {
             {/* Subjects */}
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <h2 className="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Subjects Allotted</h2>
-              {subject ? (
+              {Subject ? (
                 <div className="space-y-3">
                   <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md shadow">
-                    <span className="font-medium text-gray-700">{subject.name}</span>
-                    <span className="text-sm text-gray-500">(Code: {subject.code})</span>
+                    <span className="font-medium text-gray-700">{Subject.name}</span>
+                    <span className="text-sm text-gray-500">(Code: {Subject.code})</span>
                   </div>
                 </div>
               ) : (
