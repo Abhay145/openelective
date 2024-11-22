@@ -20,7 +20,7 @@ function StudentDashboard() {
         // If student has subjects, fetch their details
         if (response.data.student.subjects) {
           const subjectResponse = await axios.get(
-            `http://localhost:5000/api/subjects/${response.data.student.subjects}`
+            `https://backend-1jle.vercel.app/api/subjects/${response.data.student.subjects}`
           );
           setSubject(subjectResponse.data);
         }
